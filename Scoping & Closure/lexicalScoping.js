@@ -1,14 +1,21 @@
-//Lexical Scoping: In case of a nested function, the innen functions can access the outer function's variables. But outer functions cann't access the inner function's variables.
+//Lexical Scoping: In case of a nested function, the inner functions(child) can access the outer function's(parent) variables. But outer functions(parent) cann't access the inner function's(child) variables.
 
-function outerFunction() {
-    const x = 23
-    const y = 45
-    function innerFunction() {
-        const num = (x + y)
-        console.log(num);
+function outer (){
+    let parentData = "Rajnandini";
+    function inner1(){
+      let inner1Secret = "Sonai";
+      console.log("Self Access:", inner1Secret); //definitely have self access
+      console.log("Parent's data:", parentData); //have access of the parent function
+    //   console.log("Siblling's data:", inner2Secret); //don't have access of siblling's
+    };
+    inner1();
+    function inner2() {
+      let inner2Secret = "BABAJI";
+      console.log("Self Access:", inner2Secret);//definitely have self access
+      console.log("Parent's data:", parentData);//have access of the parent function
+    //   console.log("Siblling's data:", inner1Secret); //don't have access of siblling's
+    }
+    inner2();
 }
-
-innerFunction()
-}
-
-outerFunction()
+outer();
+// console.log("Too Outer:", parentData);//don't have access
